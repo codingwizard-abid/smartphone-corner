@@ -17,12 +17,17 @@
    <!-- main area -->
    <section id="main">
       <div class="container">
-
+         <!-- search field  -->
          <div class="search-field-box my-4 w-75 mx-auto">
             <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Search phone..." aria-describedby="button-addon2">
-               <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+               <input id="search-field" type="text" class="form-control" placeholder="Search phone..." aria-describedby="button-addon2">
+               <button class="btn btn-outline-secondary" type="button" onclick="displayItem()" id="button-addon2">Search</button>
             </div>
+         </div>
+
+         <!-- mobile search result -->
+         <div id="results-wrapper" class="row row-cols-1 row-cols-md-3 g-4">
+
          </div>
 
       </div>
