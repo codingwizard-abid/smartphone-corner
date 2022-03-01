@@ -64,18 +64,42 @@ const showResultsOnUi = (phones) => {
    }
 }
 
-// single phone show on ui
+// single phone details show on ui
 const singlePhoneShowOnUi = phone => {
    const singleDetailsBox = document.getElementById('singleDetails');
    singleDetailsBox.textContent = '';
+   console.log(phone);
+   const mainFeatures = phone.mainFeatures;
    const div = document.createElement('div');
    div.classList.add('card');
+   div.classList.add('shadow-lg');
    div.innerHTML = `
-      <h5 class="text-center my-3">Full Details</h5>
+      <h5 class="text-center my-3 pb-4">Full Details</h5>
       <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="">
       <div class="card-body text-center">
-      <h5><b>Brand:</b> ${phone.name}</h5>
-      <p class="card-text"> <b>Release Date:</b> ${phone.releaseDate ? phone.releaseDate : 'No release date found'}</p>
+         <h5><b>Model:</b> ${phone.name}</h5>
+         <h5><b>Brand:</b> ${phone.brand}</h5>
+         <p class="card-text"> <b>Release Date:</b> ${phone.releaseDate ? phone.releaseDate : 'No release date found'}</p>
+         <h4 class="fw-bold">Main Features</h4>
+         <table class="table table-bordered">
+            <tbody class="text-start">
+               <tr>
+                  <th>Chipset:</th>
+                  <td>${mainFeatures.chipSet}</td>
+               </tr>
+               <tr>
+                  <th>Display size</th>
+                  <td>${mainFeatures.displaySize}</td>
+               </tr>
+               <tr>
+                  <th>Memory</th>
+                  <td>${mainFeatures.memory}</td>
+               </tr>
+               <tr>
+                  <th colspan="2">Others Features</th>
+               </tr>
+            </tbody>
+         </table>
       </div>
    `
    singleDetailsBox.appendChild(div);
