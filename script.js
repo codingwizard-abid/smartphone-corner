@@ -64,6 +64,14 @@ const showResultsOnUi = (phones) => {
    }
 }
 
+// Show single search result of phone
+const singlePhoneDetails = singlePhone =>{
+   let url = `https://openapi.programming-hero.com/api/phone/${singlePhone}`;
+   fetch(url)
+   .then(response => response.json())
+   .then(data => singlePhoneShowOnUi(data.data))
+}
+
 // single phone details show on ui
 const singlePhoneShowOnUi = phone => {
    const singleDetailsBox = document.getElementById('singleDetails');
@@ -85,27 +93,13 @@ const singlePhoneShowOnUi = phone => {
          <h5><b>Brand:</b> ${phone.brand}</h5>
          <p class="card-text"> <b>Release Date:</b> ${phone.releaseDate ? phone.releaseDate : 'No release date found'}</p>
          <h4 class="fw-bold">Main Features</h4>
-         <table class="table table-bordered">
-            <tbody class="text-start">
-               <tr>
-                  <th>Chipset:</th>
-                  <td>${mainFeatures.chipSet}</td>
-               </tr>
-               <tr>
-                  <th>Display size</th>
-                  <td>${mainFeatures.displaySize}</td>
-               </tr>
-               <tr>
-                  <th>Sensors</th>
-                  <td>${mainFeatures.sensors[0]}, ${mainFeatures.sensors[1]},${mainFeatures.sensors[3] == undefined ? " " : mainFeatures.sensors[3]},${mainFeatures.sensors[4] == undefined ? " " : mainFeatures.sensors[4]}</td>
-               </tr>
-               <tr>
-                  <th>Memory</th>
-                  <td>${mainFeatures.memory}</td>
-               </tr>
-            </tbody>
-         </table>
-      </div>
+            <ul class="list-group list-group-flush text-start">
+               <li class="list-group-item"><b>Chipset:</b> ${mainFeatures.chipSet ? mainFeatures.chipSet : "not mentioned"}</li>
+               <li class="list-group-item"><b>Display size:</b> ${mainFeatures.displaySize}</li>
+               <li class="list-group-item"><b>Memory:</b> ${mainFeatures.memory}</li>
+               <li class="list-group-item"><b>Sensors:</b> ${mainFeatures.sensors[0]}, ${mainFeatures.sensors[1]},${mainFeatures.sensors[3] == undefined ? " " : mainFeatures.sensors[3]},${mainFeatures.sensors[4] == undefined ? " " : mainFeatures.sensors[4]}</li>
+            </ul>
+         </div>
    `
    singleDetailsBox.appendChild(div);
    if(otherFeatures){
@@ -113,44 +107,16 @@ const singlePhoneShowOnUi = phone => {
       othersFeatureDiv.classList.add('p-3');
       othersFeatureDiv.innerHTML = `
          <h4 class="fw-bold text-center">Others Features</h4>
-         <table class="table table-bordered">
-            <tbody class="text-start">
-               <tr>
-                  <th>Bluetooth:</th>
-                  <td>${otherFeatures.Bluetooth}</td>
-               </tr>
-               <tr>
-                  <th>GPS:</th>
-                  <td>${otherFeatures.GPS}</td>
-               </tr>
-               <tr>
-                  <th>NFC:</th>
-                  <td>${otherFeatures.NFC}</td>
-               </tr>
-               <tr>
-                  <th>Radio:</th>
-                  <td>${otherFeatures.Radio}</td>
-               </tr>
-               <tr>
-                  <th>USB:</th>
-                  <td>${otherFeatures.USB}</td>
-               </tr>
-               <tr>
-                  <th>WLAN:</th>
-                  <td>${otherFeatures.WLAN}</td>
-               </tr>
-            </tbody>
-         </table>
+         <ul class="list-group list-group-flush text-start">
+            <li class="list-group-item"><b>Bluetooth:</b> ${otherFeatures.Bluetooth}</li>
+            <li class="list-group-item"><b>GPS:</b> ${otherFeatures.GPS}</li>
+            <li class="list-group-item"><b>NFC:</b> ${otherFeatures.NFC}</li>
+            <li class="list-group-item"><b>Radio:</b> ${otherFeatures.Radio}</li>
+            <li class="list-group-item"><b>USB:</b> ${otherFeatures.USB}</li>
+            <li class="list-group-item"><b>WLAN:</b> ${otherFeatures.WLAN}</li>
+         </ul>
       `
       div.appendChild(othersFeatureDiv);
    }
    
-}
-
-// Show single search result of phone
-const singlePhoneDetails = singlePhone =>{
-   let url = `https://openapi.programming-hero.com/api/phone/${singlePhone}`;
-   fetch(url)
-   .then(response => response.json())
-   .then(data => singlePhoneShowOnUi(data.data))
 }

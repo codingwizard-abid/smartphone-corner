@@ -18,3 +18,8 @@
       width: 90%;
    }
 }
+@media (max-width: 350px){
+   #singleDetails{
+      width: 100%;
+   }
+}
