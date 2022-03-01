@@ -70,6 +70,9 @@ const singlePhoneShowOnUi = phone => {
    singleDetailsBox.textContent = '';
    console.log(phone);
    const mainFeatures = phone.mainFeatures;
+   // others features
+   const otherFeatures = phone.others;
+   console.log(otherFeatures);
    const div = document.createElement('div');
    div.classList.add('card');
    div.classList.add('shadow-lg');
@@ -95,14 +98,48 @@ const singlePhoneShowOnUi = phone => {
                   <th>Memory</th>
                   <td>${mainFeatures.memory}</td>
                </tr>
-               <tr>
-                  <th colspan="2">Others Features</th>
-               </tr>
             </tbody>
          </table>
       </div>
    `
    singleDetailsBox.appendChild(div);
+   if(otherFeatures){
+      let othersFeatureDiv = document.createElement('div');
+      othersFeatureDiv.classList.add('p-3');
+      othersFeatureDiv.innerHTML = `
+         <h4 class="fw-bold text-center">Others Features</h4>
+         <table class="table table-bordered">
+            <tbody class="text-start">
+               <tr>
+                  <th>Bluetooth:</th>
+                  <td>${otherFeatures.Bluetooth}</td>
+               </tr>
+               <tr>
+                  <th>GPS:</th>
+                  <td>${otherFeatures.GPS}</td>
+               </tr>
+               <tr>
+                  <th>NFC:</th>
+                  <td>${otherFeatures.NFC}</td>
+               </tr>
+               <tr>
+                  <th>Radio:</th>
+                  <td>${otherFeatures.Radio}</td>
+               </tr>
+               <tr>
+                  <th>USB:</th>
+                  <td>${otherFeatures.USB}</td>
+               </tr>
+               <tr>
+                  <th>WLAN:</th>
+                  <td>${otherFeatures.WLAN}</td>
+               </tr>
+            </tbody>
+         </table>
+      `
+      div.appendChild(othersFeatureDiv);
+   }
+   
 }
 
 // Show single search result of phone
