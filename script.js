@@ -2,7 +2,7 @@
 // display button with search 
 const displayItem = ()=> {
    let inputField = document.getElementById('search-field');
-   let inputFieldValue = inputField.value;
+   let inputFieldValue = inputField.value.toLowerCase();
 
    const url = `https://openapi.programming-hero.com/api/phones?search=${inputFieldValue}`
    fetch(url)
@@ -75,6 +75,7 @@ const singlePhoneShowOnUi = phone => {
    console.log(otherFeatures);
    const div = document.createElement('div');
    div.classList.add('card');
+   div.classList.add('p-3');
    div.classList.add('shadow-lg');
    div.innerHTML = `
       <h5 class="text-center my-3 pb-4">Full Details</h5>
@@ -93,6 +94,10 @@ const singlePhoneShowOnUi = phone => {
                <tr>
                   <th>Display size</th>
                   <td>${mainFeatures.displaySize}</td>
+               </tr>
+               <tr>
+                  <th>Sensors</th>
+                  <td>${mainFeatures.sensors[0]}, ${mainFeatures.sensors[1]},${mainFeatures.sensors[3] == undefined ? " " : mainFeatures.sensors[3]},${mainFeatures.sensors[4] == undefined ? " " : mainFeatures.sensors[4]}</td>
                </tr>
                <tr>
                   <th>Memory</th>
