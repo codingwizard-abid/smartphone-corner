@@ -90,8 +90,8 @@ const singlePhoneShowOnUi = phone => {
       <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="">
       <div class="card-body text-center">
          <h5><b>Model:</b> ${phone.name}</h5>
-         <h5><b>Brand:</b> ${phone.brand}</h5>
          <p class="card-text"> <b>Release Date:</b> ${phone.releaseDate ? phone.releaseDate : 'No release date found'}</p>
+         <h5><b>Brand:</b> ${phone.brand}</h5>
          <h4 class="fw-bold">Main Features</h4>
             <ul class="list-group list-group-flush text-start">
                <li class="list-group-item"><b>Chipset:</b> ${mainFeatures.chipSet ? mainFeatures.chipSet : "not mentioned"}</li>
