@@ -11,20 +11,15 @@ const displayItem = ()=> {
    inputField.value = '';
 }
 
-// Show single search result of phone
-const singlePhoneDetails = singlePhone =>{
-   let url = `https://openapi.programming-hero.com/api/phone/${singlePhone}`;
-   fetch(url)
-   .then(response => response.json())
-   .then(data => console.log(data.data))
-}
-
 // show results on ui 
 const showResultsOnUi = (phones) => {
    const resultsWrapper = document.getElementById('results-wrapper');
    resultsWrapper.textContent = '';
+   const singleDetailsBox = document.getElementById('singleDetails');
+   singleDetailsBox.textContent = '';
    const phoneList = phones.data;
-   console.log(phoneList);
+
+   // if result is available
    if(phones.status){
       // result found remove error
       document.getElementById('error').style.display = 'none';
@@ -67,4 +62,29 @@ const showResultsOnUi = (phones) => {
    }else{
       document.getElementById('error').style.display = 'block';
    }
+}
+
+// single phone show on ui
+const singlePhoneShowOnUi = phone => {
+   const singleDetailsBox = document.getElementById('singleDetails');
+   singleDetailsBox.textContent = '';
+   const div = document.createElement('div');
+   div.classList.add('card');
+   div.innerHTML = `
+      <h5 class="text-center my-3">Full Details</h5>
+      <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="">
+      <div class="card-body text-center">
+      <h5><b>Brand:</b> ${phone.name}</h5>
+      <p class="card-text"> <b>Release Date:</b> ${phone.releaseDate ? phone.releaseDate : 'No release date found'}</p>
+      </div>
+   `
+   singleDetailsBox.appendChild(div);
+}
+
+// Show single search result of phone
+const singlePhoneDetails = singlePhone =>{
+   let url = `https://openapi.programming-hero.com/api/phone/${singlePhone}`;
+   fetch(url)
+   .then(response => response.json())
+   .then(data => singlePhoneShowOnUi(data.data))
 }
