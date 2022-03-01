@@ -102,6 +102,8 @@ const singlePhoneShowOnUi = phone => {
          </div>
    `
    singleDetailsBox.appendChild(div);
+   
+   // if other feature available
    if(otherFeatures){
       let othersFeatureDiv = document.createElement('div');
       othersFeatureDiv.classList.add('p-3');
